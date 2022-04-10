@@ -170,7 +170,7 @@
                                     v-if="!focusComment.includes(`${items.text.length}-${index}`)">Apri commenti</button>
                                 <button class="btn btn-primary" @click="closeComment(index, items.text.length)"
                                     v-else>Chiudi commenti</button>
-                                <button class="btn btn-danger mx-2"@click="deletePost(index)">Rimmuovi</button>
+                                <button class="btn btn-danger mx-2"@click="deletePost(index)">Rimuovi</button>
                             </div>
                             <div v-if="focusComment.includes(`${items.text.length}-${index}`)" class="mx-4">
                                 <h1 class="pt-1 mt-1 pb-0"> Comments ({{items.comments.length}}): </h1>
