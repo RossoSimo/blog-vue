@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 ms-1 my-lg-0 px-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item px-1">
-                            <a class="nav-link active" href="#newpost" aria-current="page" @click="openNewPost(), text='', title='', imageURL='', tag='', category=''">New post</a>
+                            <a class="nav-link active" href="#newpost" aria-current="page" @click="openNewPost(), text='', title='', imageURL='', tag='', category=''">Nuovo Post</a>
                         </li>
                         <li class="nav-item px-1">
                             <a class="nav-link active" href="#settings" aria-current="ac" @click="openSettings(), name='', title='', imageAccURL=''">Account</a>
@@ -36,28 +36,28 @@
         </nav>
 
         <newpost v-if="newPostTriggered && settingsTriggered == false">
-            <form>
+            <form style="width: 96%">
                 <div class="form-group">
-                    <label for="titleInput">Title:</label>
+                    <label for="titleInput">Titolo:</label>
                     <input class="form-control" id="titleInput" v-model="title" placeholder="add a title" />
                 </div>
                 <div class="form-group">
-                    <label for="textInput">Text:</label>
+                    <label for="textInput">Testo:</label>
                     <textarea class="form-control" rows="3" id="textInput" v-model="text"
                         placeholder="add text"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="textInput">Image(URL):</label>
+                    <label for="textInput">Immagine(URL):</label>
                     <input class="form-control" id="imageInput" v-model="imageURL" placeholder="add image URL" />
                 </div>
                 <div class="form-group">
                     <label for="tagInput">Tag:</label>
                     <input class="form-control" aria-describedby="tagHelp" id="tagInput" v-model="tag"
                         placeholder="add tags" />
-                    <small class="form-text text-muted" id="tagHelp">Write tag1, tag2, ...</small>
+                    <small class="form-text text-muted" id="tagHelp">Scrivi tag1, tag2, ...</small>
                 </div>
                 <div class="form-group">
-                    <label for="categoryInput">Category:</label>
+                    <label for="categoryInput">Categoria:</label>
                     <input class="form-control" list="datalistOptions" id="inputCategory" v-model="category" palceholder="Write a category (Es.: Sports)">
                     <datalist id="datalistOptions">
                         <option v-for="c in categories" v-bind:value="c"></option>
@@ -71,12 +71,12 @@
         <settings v-if="settingsTriggered && newPostTriggered == false">
             <form>
                 <div class="form-group">
-                    <label for="nameInput">Account name:</label>
-                    <input class="form-control" id="nameInput" v-model="name" placeholder="change name"/>
+                    <label for="nameInput">Nome autore:</label>
+                    <input class="form-control" id="nameInput" v-model="name" placeholder="Cambia nome"/>
                 </div>
                 <div class="form-group">
-                    <label for="imageAccountUrl">Account image (URL):</label>
-                    <input class="form-control" id="imageAccountUrl" v-model="imageAccURL" placeholder="add image URL" />
+                    <label for="imageAccountUrl">Immagine autore (URL):</label>
+                    <input class="form-control" id="imageAccountUrl" v-model="imageAccURL" placeholder="Aggiungi URL immagine" />
                 </div>
                 <br>
             </form>
@@ -87,7 +87,7 @@
             <h2>Nessun post presente...</h2>
         </div>
         <div class="d-flex justify-content-center entranceFromBottom">
-            <ul class="mx-0">
+            <ul class="mx-0 px-0">
                 <li v-for="(items, index) in posts">
                     <!-- post con img -->
                     <div v-if="items.title.toUpperCase().includes(search.toUpperCase())">
@@ -107,7 +107,7 @@
                                             <tags :item=item></tags>
                                         </div>
                                     </template>
-                                    <p class="my-0 py-0 fst-italic">Category: {{ items.category }}</p>
+                                    <p class="my-0 py-0 fst-italic">Categoria: {{ items.category }}</p>
                                 </div>
                                 <div class="separator"></div>
                             </div>
@@ -166,14 +166,12 @@
                         </div>
                         <div class="bottom-card py-3">
                             <div class="mx-4">
-                                <button class="btn btn-primary" @click="openComment(index, items.text.length)"
-                                    v-if="!focusComment.includes(`${items.text.length}-${index}`)">Apri commenti</button>
-                                <button class="btn btn-primary" @click="closeComment(index, items.text.length)"
-                                    v-else>Chiudi commenti</button>
-                                <button class="btn btn-danger mx-2"@click="deletePost(index)">Rimuovi</button>
+                                <button class="btn btn-primary" @click="openComment(index, items.text.length)" v-if="!focusComment.includes(`${items.text.length}-${index}`)">Apri commenti</button>
+                                <button class="btn btn-primary" @click="closeComment(index, items.text.length)" v-else>Chiudi commenti</button>
+                                <button class="btn btn-danger mx-2"@click="deletePost(index)"><i v-else class="bi bi-trash3"></i></button>
                             </div>
                             <div v-if="focusComment.includes(`${items.text.length}-${index}`)" class="mx-4">
-                                <h1 class="pt-1 mt-1 pb-0"> Comments ({{items.comments.length}}): </h1>
+                                <h1 class="pt-1 mt-1 pb-0"> Commenti ({{items.comments.length}}): </h1>
                                 <p v-if="items.comments.length == 0" class="pt-1 mt-1 pb-0">Nessun commento disponibile.</p>
                                 <template v-for="(item, index) in items.comments">
                                     <div class="d-grid d-sm-flex justify-content-md-between">
@@ -184,7 +182,7 @@
                                 </template>
                             
                                 <form class="input-group" onsubmit="event.preventDefault();">
-                                    <input id="inputComment" class="form-control" v-model="com" @keyup.enter="addComment(items, com), com = ''" placeholder="add comment"></input>
+                                    <input id="inputComment" class="form-control" v-model="com" @keyup.enter="addComment(items, com), com = ''" placeholder="Aggiungi un commento"></input>
                                     <i class="bi bi-arrow-left-circle fs-4 ms-2" @click="addComment(items, com), com = ''"></i>
                                 </form>
                             </div>
@@ -195,8 +193,27 @@
         </div>
 
         <p v-if="posts.length != 0">
-            <button class="btn btn-primary" @click="deleteAll()">delete all</button>
+            <button class="btn btn-primary" @click="deleteAll()">Ellimina tutti i posts</button>
         </p>
+
+        <div class="footer-dark">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3 item">
+                            <h3>Dev</h3>
+                            <ul>
+                                <li><a href="https://gitlab.com/RossoSimo/Informatica2122/-/tree/main/blog">Source code</a></li>
+                                <li><a href="https://getbootstrap.com/">Bootstrap 5</a></li>
+                                <li><a href="https://vuejs.org/">Vue 3</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 col-md-5 item social"><a href="https://github.com/RossoSimo"><i class="bi bi-github"></i></a></div>
+                    </div>
+                    <p class="copyright">Simone Rosso - ITIS C. Zuccante</p>
+                </div>
+            </footer>
+        </div>
 
         <alertlist :alerts="alerts" class="my-0" style="z-index: 2; position: absolute"></alertlist>
     </div>
