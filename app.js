@@ -1,4 +1,4 @@
-const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // month's numbers to name helper
+const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]; // month's numbers to name helper
 const regex = new RegExp('(http)?s?:?(\\/\\/[^"\']*\\.(?:png|jpg|jpeg|gif|png|svg))', 'gm'); // image url checker
 
 const Blog = {
@@ -24,7 +24,7 @@ const Blog = {
                     },
                     date: {
                         day: "21",
-                        month: "Jenuary",
+                        month: "Gennaio",
                         year: "2022"
                     },
                     expanded: false,
@@ -45,8 +45,8 @@ const Blog = {
                     },
                     date: {
                         day: "9",
-                        month: "February",
-                        year: "2022"
+                        month: "Dicembre",
+                        year: "2021"
                     },
                     expanded: false,
                 },
@@ -77,7 +77,7 @@ const Blog = {
                     },
                     date: {
                         day: "18",
-                        month: "April",
+                        month: "Aprile",
                         year: "2021"
                     },
                     expanded: false,
@@ -171,7 +171,7 @@ const Blog = {
             let today = new Date();
 
             // add post
-            this.posts.push({
+            this.posts.unshift({
                 title: title.trim(),
                 text: text.trim(),
                 tag: tags,
@@ -349,7 +349,7 @@ app.component('newpost', {
             <div class="popup-inner">
                 <div class="d-grid d-md-flex justify-content-md-between">
                     <div class="d-inline">
-                        <h2>New Post</h2>
+                        <h2>Nuovo Post</h2>
                     </div>
                     <button type="button" class="btn-close" v-on:click="closeNewPost()" aria-label="Close"></button>
                 </div>
